@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "enchant_upgrades",
+  "version": "${version}",
+  "name": "Enchant Upgrades",
+  "description": "Choose enchantments and upgrade them using materials and experience at the enchanting table.",
+  "authors": ["Hani"],
+  "contact": {
+    "sources": "https://github.com/hani2-UC/enchant-upgrades",
+    "issues": "https://github.com/hani2-UC/enchant-upgrades/issues"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["jp.hani.enchantupgrades.EnchantUpgrades"],
+    "client": ["jp.hani.enchantupgrades.client.ClientSetup"]
+  },
+  "depends": {"fabricloader": ">=0.16.14", "fabric-api": ">=${api}", "minecraft": "${minecraft}", "java": ">=21"}
+}

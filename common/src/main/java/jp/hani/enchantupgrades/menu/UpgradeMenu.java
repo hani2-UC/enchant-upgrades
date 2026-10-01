@@ -72,7 +72,7 @@ public final class UpgradeMenu extends AbstractContainerMenu {
             for (var offset : EnchantmentTableBlock.BOOKSHELF_OFFSETS) {
                 if (EnchantmentTableBlock.isValidBookShelf(level, pos, offset)) {
                     var shelfPos = pos.offset(offset);
-                    power += level.getBlockState(shelfPos).getEnchantPowerBonus(level, shelfPos);
+                    power += EnchantUpgrades.bookshelfPower(level, shelfPos);
                 }
             }
             shelves.set(Math.min(15, (int) power));

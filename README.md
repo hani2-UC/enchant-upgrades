@@ -2,15 +2,22 @@
 
 [English](README.en.md) · [最新版をダウンロード](https://github.com/hani2-UC/enchant-upgrades/releases/latest) · [不具合報告](https://github.com/hani2-UC/enchant-upgrades/issues)
 
-Minecraft Java Edition **1.20.1 / Forge 47.4.10以上（47系）/ Java 17** 用。
+Minecraft Java Edition **1.20.1・1.21.1・1.21.4** 用。
 エンチャントテーブルのランダム抽選を、**素材＋経験値レベルで選んだ効果を1段階ずつ強化する画面**に置き換えます。
-外部ライブラリMODは不要です。Fabric・NeoForge・統合版用ではありません。
+日本語・英語の画面に対応。その他の言語では画面は英語になり、Minecraft本体のアイテム名・エンチャント名は選択した言語に従います。
+
+| Minecraft | 対応ローダー | 検証したローダー | Java |
+|---|---|---|---|
+| 1.20.1 | Forge / Fabric | Forge 47.4.10 / Fabric Loader 0.16.14 + Fabric API 0.92.6 | 17 |
+| 1.21.1 | Fabric / NeoForge | Fabric Loader 0.16.14 + Fabric API 0.116.17 / NeoForge 21.1.252 | 21 |
+| 1.21.4 | Fabric / NeoForge | Fabric Loader 0.16.14 + Fabric API 0.119.4 / NeoForge 21.4.158 | 21 |
 
 ## 導入
 
-1. [Forge公式](https://files.minecraftforge.net/net/minecraftforge/forge/index_1.20.1.html)から1.20.1のForgeを導入します。開発・検証版は47.4.10です。
-2. [ダウンロードページ](https://github.com/hani2-UC/enchant-upgrades/releases/latest)の `enchant_upgrades-1.0.0.jar` を、使用するMinecraftプロファイルの `mods` フォルダーへ入れます。
-3. Forgeのプロファイルで起動し、エンチャントテーブルを右クリックします。
+1. 使用するMinecraftのバージョンに合ったローダーを導入します。
+2. [ダウンロードページ](https://github.com/hani2-UC/enchant-upgrades/releases/latest)から対応する `enchant_upgrades-ローダー-Minecraftバージョン-1.1.0.jar` を1個選び、使用するプロファイルの `mods` フォルダーへ入れます。
+3. Fabric版では、同じMinecraftバージョンのFabric APIも入れてください。Forge・NeoForge版は外部ライブラリMOD不要です。
+4. 起動してエンチャントテーブルを右クリックします。
 
 マルチプレイではサーバーと全参加者の両方に同じMODを入れてください。
 
@@ -79,16 +86,26 @@ Minecraft Java Edition **1.20.1 / Forge 47.4.10以上（47系）/ Java 17** 用�
 | 貫通 | 鉄塊 | 4 | 3 | 0 |
 | 高速装填 | レッドストーン | 8 | 5 | 0 |
 | 修繕 | 残響の欠片 | 2 | 30 | 15 |
+| 高密度（1.21系） | 鉄インゴット | 2 | 5 | 0 |
+| 防具貫通（1.21系） | ブリーズロッド | 2 | 8 | 3 |
+| ウィンドバースト（1.21系） | ブリーズロッド | 4 | 20 | 12 |
 
-呪い2種を除くバニラの37種に対応。バニラの最大レベルと両立制限を守ります。
-本棚は通常のテーブルと同じ配置と、テーブルとの間の空間が必要です。MODの本棚によるエンチャントパワーも計算します。上限は15です。
+呪い2種を除くバニラの37種（1.20.1）、40種（1.21系）に対応。バニラの最大レベルと両立制限を守ります。
+本棚は通常のテーブルと同じ配置と、テーブルとの間の空間が必要です。Forge・NeoForgeでは本棚のエンチャントパワー、Fabricでは `minecraft:enchantment_power_provider` タグに登録された本棚を計算します。上限は15です。
 村人取引・戦利品・金床・砥石の仕組みは通常どおりです。ランダム抽選の置き換え対象はテーブルです。
 
 ## コスト調整・追加MODのエンチャント対応
 
 素材とコストは通常のデータパックで変更できます。
-同じIDのレシピを `data/enchant_upgrades/recipes/sharpness.json` などで上書きしてください。
-データパックの `pack.mcmeta` は `pack_format: 15` を指定します。
+同じIDのJSONを下記の場所で上書きしてください。
+
+| Minecraft | JSONの場所 | データパックの `pack_format` |
+|---|---|---:|
+| 1.20.1 | `data/enchant_upgrades/recipes/sharpness.json` | 15 |
+| 1.21.1 | `data/enchant_upgrades/enchantment_upgrades/sharpness.json` | 48 |
+| 1.21.4 | `data/enchant_upgrades/enchantment_upgrades/sharpness.json` | 61 |
+
+1.21系では独自のデータフォルダーを使います。`type` は省略できます。範囲ダメージ増加のエンチャントIDは1.20.1の `minecraft:sweeping` から `minecraft:sweeping_edge` に変わります。
 
 ```json
 {
@@ -106,21 +123,24 @@ Minecraft Java Edition **1.20.1 / Forge 47.4.10以上（47系）/ Java 17** 用�
 
 目標レベルをLとすると、素材数は `base_material + material_step × (L−1)`、消費レベルは `base_levels + level_step × L × (L−1) / 2`、本棚数は `min(15, base_shelves + shelf_step × (L−1))` です。
 一回の素材数は64個以下、消費レベルは32767以下である必要があります。最大スタック数が小さい素材では、それ以内の素材数を設定してください。
-`material` はMinecraftのIngredient形式で、アイテムタグも使用できます。
+`material` は `{ "item": "minecraft:blaze_rod" }` または `{ "tag": "名前空間:タグ名" }` を使用できます。1.20.1では通常のIngredient配列も使用できます。
 追加MODのエンチャントには、新しいレシピJSONを追加して `enchantment` にその登録IDを指定します。自動追加はしません。
-`/reload` またはワールドの入り直しで適用され、サーバーのレシピがクライアントへ同期されます。
+`/reload` またはワールドの入り直しで適用されます。1.21系では画面を開くときにサーバーの設定を同期します。リロード前に開いていた画面は閉じられるため、テーブルを開き直してください。
 
 ## 開発
 
-JDK 17で `gradlew.bat build`。配布JARは `build/libs/enchant_upgrades-1.0.0.jar`。
-`gradlew.bat runGameTestServer` で消費・競合・レベル上限・本棚・本の変換・無効な要求・返却・通信データを検証します。
-`gradlew.bat runSmokeClient` は検証用の新規ワールドを作ってテーブルを開き、強化し、画面を保存して終了します。
+Windowsでは `./Build-Mod.ps1` で6種類をビルドして `dist/` にコピーします。`-Loader Fabric -Minecraft 1.21.4` で対象を絞り、`-Test` でゲーム内の自動テストも実行できます。JDK 17・21を用意し、`JAVA17_HOME`・`JAVA21_HOME` を設定してください。このワークスペースのローカルJDKも自動検出します。
+
+個別のGradleプロジェクトはForgeがルート、Fabric 1.20.1が `fabric/`、Fabric 1.21系が `fabric-modern/`、NeoForgeが `neoforge/` です。1.21系では `-PmcVersion=1.21.1` または `-PmcVersion=1.21.4` を指定します。Fabric 1.21系はそのフォルダーのGradleラッパーを使います。
+
+`runGameTestServer`（Forge・NeoForge）または `runGametest`（Fabric）で消費・競合・レベル上限・本棚・本の変換・無効な要求・返却・通信データを検証します。1.21系ではメイスと古い通信データの拒否も検証します。
+`runSmokeClient` は検証用の新規ワールドを作ってテーブルを開き、実際の通信で強化し、画面を保存して終了します。
 検証用クラスと空のテスト構造は配布JARから除外されます。
 
 ## 検証結果
 
-Forge 47.4.10 / Java 17でビルド。8項目のMinecraft GameTestをすべて通過しました。
-日本語クライアントでも、新規ワールドでテーブルを開き、実際の通信を使ってダメージ増加Ⅰを付与できることを確認しました。
+1.1.0は上表の6種類をビルドし、1.20.1では各8項目、1.21系では各10項目のMinecraft GameTestをすべて通過しました。
+各ローダー・バージョンの日本語クライアントで、新規ワールドのテーブルを開き、実際の通信を使ってダメージ増加Ⅰを付与できることも確認しました。Forgeクライアントの確認は1.0.0で実施し、共通コード化後の1.1.0はゲーム内テストを再実行しています。
 他MODとの組み合わせは未検証です。
 
 ![日本語の強化画面](docs/enchant-upgrades-ja.png)

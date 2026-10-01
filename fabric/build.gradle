@@ -1,0 +1,60 @@
+plugins {
+    id 'fabric-loom' version '1.6.12'
+}
+
+version = mod_version
+group = 'jp.hani.enchantupgrades'
+base.archivesName = "enchant_upgrades-fabric-${minecraft_version}"
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+}
+
+sourceSets {
+    main {
+        java.srcDir '../common/src/main/java'
+        resources.srcDir '../src/main/resources'
+        resources.exclude 'META-INF/**', 'data/enchant_upgrades/structures/**'
+    }
+    testmod {
+        compileClasspath += main.compileClasspath + main.output
+        runtimeClasspath += main.runtimeClasspath + main.output
+    }
+}
+
+loom {
+    mods {
+        enchant_upgrades { sourceSet sourceSets.main }
+        enchant_upgrades_test { sourceSet sourceSets.testmod }
+    }
+    runs {
+        gametest {
+            server()
+            source sourceSets.testmod
+            name 'Enchant Upgrades GameTests'
+            vmArg '-Dfabric-api.gametest'
+            vmArg "-Dfabric-api.gametest.report-file=${project.buildDir}/gametest.xml"
+            runDir 'build/gametest'
+        }
+        smokeClient {
+            client()
+            source sourceSets.testmod
+            name 'Enchant Upgrades Client Smoke'
+            vmArg '-Denchant_upgrades.smoke=true'
+            programArgs '--width', '1100', '--height', '760'
+            runDir 'build/smoke-client'
+        }
+    }
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') { expand version: project.version }
+    filesMatching('pack.mcmeta') { expand mod_id: 'enchant_upgrades' }
+}
+jar { from('../LICENSE.md') }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }

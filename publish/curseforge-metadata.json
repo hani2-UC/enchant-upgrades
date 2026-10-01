@@ -1,0 +1,28 @@
+{
+  "name": "Enchant Upgrades",
+  "summary": "Choose enchantments and upgrade them one level at a time using materials and experience instead of random table rolls.",
+  "game": "Minecraft",
+  "class": "Mods",
+  "main_category": "Magic",
+  "additional_categories": [
+    "Armor, Tools, and Weapons",
+    "Utility & QoL"
+  ],
+  "license": "MIT License",
+  "version": "1.0.0",
+  "display_name": "Enchant Upgrades 1.0.0 — Forge 1.20.1",
+  "release_type": "Release",
+  "game_versions": [
+    "1.20.1"
+  ],
+  "mod_loaders": [
+    "Forge"
+  ],
+  "java_versions": [
+    "Java 17"
+  ],
+  "environment": "Client and Server",
+  "source_url": "https://github.com/hani2-UC/enchant-upgrades",
+  "issues_url": "https://github.com/hani2-UC/enchant-upgrades/issues",
+  "wiki_url": "https://github.com/hani2-UC/enchant-upgrades/blob/codex/publish-enchant-upgrades/README.en.md"
+}

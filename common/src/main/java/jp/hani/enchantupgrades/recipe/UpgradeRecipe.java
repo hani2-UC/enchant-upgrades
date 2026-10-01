@@ -18,7 +18,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -68,8 +68,8 @@ public record UpgradeRecipe(ResourceLocation id, Enchantment enchantment, Ingred
 
     public static final class Serializer implements RecipeSerializer<UpgradeRecipe> {
         @Override public UpgradeRecipe fromJson(ResourceLocation id, JsonObject json) {
-            ResourceLocation enchantId = ResourceLocation.parse(GsonHelper.getAsString(json, "enchantment"));
-            Enchantment enchant = ForgeRegistries.ENCHANTMENTS.getValue(enchantId);
+            ResourceLocation enchantId = new ResourceLocation(GsonHelper.getAsString(json, "enchantment"));
+            Enchantment enchant = BuiltInRegistries.ENCHANTMENT.getOptional(enchantId).orElse(null);
             if (enchant == null) throw new JsonSyntaxException("Unknown enchantment: " + enchantId);
             Ingredient material = Ingredient.fromJson(json.get("material"));
             if (material.isEmpty()) throw new JsonSyntaxException("Upgrade material cannot be empty");
@@ -91,13 +91,13 @@ public record UpgradeRecipe(ResourceLocation id, Enchantment enchantment, Ingred
             return value;
         }
         @Override public UpgradeRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            Enchantment enchant = ForgeRegistries.ENCHANTMENTS.getValue(buf.readResourceLocation());
+            Enchantment enchant = BuiltInRegistries.ENCHANTMENT.getOptional(buf.readResourceLocation()).orElse(null);
             if (enchant == null) throw new IllegalArgumentException("Unknown synced enchantment");
             return new UpgradeRecipe(id, enchant, Ingredient.fromNetwork(buf), buf.readVarInt(), buf.readVarInt(),
                 buf.readVarInt(), buf.readVarInt(), buf.readVarInt(), buf.readVarInt());
         }
         @Override public void toNetwork(FriendlyByteBuf buf, UpgradeRecipe recipe) {
-            buf.writeResourceLocation(ForgeRegistries.ENCHANTMENTS.getKey(recipe.enchantment));
+            buf.writeResourceLocation(BuiltInRegistries.ENCHANTMENT.getKey(recipe.enchantment));
             recipe.material.toNetwork(buf);
             buf.writeVarInt(recipe.baseMaterial).writeVarInt(recipe.materialStep).writeVarInt(recipe.baseLevels)
                 .writeVarInt(recipe.levelStep).writeVarInt(recipe.baseShelves).writeVarInt(recipe.shelfStep);

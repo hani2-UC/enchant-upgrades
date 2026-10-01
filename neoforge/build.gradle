@@ -1,0 +1,63 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+def variants = ['1.21.1': '21.1.252', '1.21.4': '21.4.158']
+if (!variants.containsKey(mcVersion)) throw new GradleException('Supported versions: ' + variants.keySet())
+version = mod_version
+group = 'jp.hani.enchantupgrades'
+base.archivesName = "enchant_upgrades-neoforge-${mcVersion}"
+layout.buildDirectory = file("build/${mcVersion}")
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+sourceSets.main.java.srcDir '../common-mc21/src/main/java'
+sourceSets.main.java.srcDir '../common-mc21/src/test/java'
+sourceSets.main.java.srcDir "../common-mc21/src/test/${mcVersion}/java"
+sourceSets.main.java.srcDir "src/${mcVersion}/java"
+sourceSets.main.resources.srcDir '../common-mc21/src/main/resources'
+
+tasks.register('generateResources', Copy) {
+    from('../src/main/resources/assets') { into 'assets' }
+    from('../src/main/resources/data/enchant_upgrades/recipes') {
+        exclude 'sweeping.json'
+        into 'data/enchant_upgrades/enchantment_upgrades'
+    }
+    into layout.buildDirectory.dir('generated/resources')
+}
+sourceSets.main.resources.srcDir tasks.named('generateResources')
+
+neoForge {
+    version = variants[mcVersion]
+    runs {
+        client { client() }
+        server { server(); programArgument '--nogui' }
+        gameTestServer {
+            type = 'gameTestServer'
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'enchant_upgrades'
+        }
+        smokeClient {
+            client()
+            systemProperty 'enchant_upgrades.smoke', 'true'
+            programArguments.addAll '--width', '1100', '--height', '760'
+        }
+        configureEach {
+            gameDirectory = file("run/${mcVersion}/${name}")
+            logLevel = org.slf4j.event.Level.INFO
+        }
+    }
+    mods { enchant_upgrades { sourceSet sourceSets.main } }
+}
+
+processResources {
+    dependsOn tasks.named('generateResources')
+    inputs.properties version: project.version, minecraft: mcVersion, neo: variants[mcVersion]
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand version: project.version, minecraft: mcVersion, neo: variants[mcVersion]
+    }
+    filesMatching('pack.mcmeta') { expand pack_format: mcVersion == '1.21.4' ? 46 : 34 }
+}
+jar {
+    from('../LICENSE.md')
+    exclude 'jp/hani/enchantupgrades/test/**'
+    exclude 'data/enchant_upgrades/structure/empty.nbt'
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }

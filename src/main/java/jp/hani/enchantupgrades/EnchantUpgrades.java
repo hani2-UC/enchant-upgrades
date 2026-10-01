@@ -17,6 +17,9 @@ import net.minecraftforge.registries.RegistryObject;
 @Mod(EnchantUpgrades.MOD_ID)
 public final class EnchantUpgrades {
     public static final String MOD_ID = "enchant_upgrades";
+    public static float bookshelfPower(net.minecraft.world.level.Level level, net.minecraft.core.BlockPos pos) {
+        return level.getBlockState(pos).getEnchantPowerBonus(level, pos);
+    }
     private static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MOD_ID);
     private static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MOD_ID);
     private static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, MOD_ID);

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "enchant_upgrades_test",
+  "version": "1.0.0",
+  "name": "Enchant Upgrades Tests",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-gametest": ["jp.hani.enchantupgrades.test.UpgradeGameTests"],
+    "client": ["jp.hani.enchantupgrades.test.SmokeInitializer"]
+  },
+  "depends": {"enchant_upgrades": "*", "fabric-api": "*"}
+}
