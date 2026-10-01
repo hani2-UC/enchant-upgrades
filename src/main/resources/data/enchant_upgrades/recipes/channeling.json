@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:channeling",
+  "material": {
+    "item": "minecraft:lightning_rod"
+  },
+  "base_material": 1,
+  "material_step": 0,
+  "base_levels": 18,
+  "level_step": 0,
+  "base_shelves": 9,
+  "shelf_step": 0
+}

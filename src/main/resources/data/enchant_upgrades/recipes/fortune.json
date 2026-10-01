@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:fortune",
+  "material": {
+    "item": "minecraft:emerald"
+  },
+  "base_material": 3,
+  "material_step": 3,
+  "base_levels": 7,
+  "level_step": 6,
+  "base_shelves": 3,
+  "shelf_step": 3
+}

@@ -1,0 +1,16 @@
+{
+  "screen.enchant_upgrades.title": "エンチャント強化",
+  "screen.enchant_upgrades.target": "装備",
+  "screen.enchant_upgrades.material": "素材",
+  "screen.enchant_upgrades.required": "必要コスト",
+  "screen.enchant_upgrades.upgrade": "強化する",
+  "screen.enchant_upgrades.shelves": "本棚: %s / 15",
+  "screen.enchant_upgrades.cost": "素材×%s / %sLv / 本棚%s",
+  "screen.enchant_upgrades.insert": "左の枠に装備または本を入れて、強化したいエンチャントを選んでください。",
+  "screen.enchant_upgrades.unsupported": "この装備には付けられません",
+  "screen.enchant_upgrades.max": "最大レベル",
+  "screen.enchant_upgrades.conflict": "既存のエンチャントと両立できません",
+  "screen.enchant_upgrades.need_shelves": "有効な本棚が%s個必要です",
+  "screen.enchant_upgrades.need_material": "必要な素材が不足しています",
+  "screen.enchant_upgrades.need_xp": "経験値レベルが不足しています"
+}

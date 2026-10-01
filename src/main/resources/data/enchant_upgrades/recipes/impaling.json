@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:impaling",
+  "material": {
+    "item": "minecraft:prismarine_shard"
+  },
+  "base_material": 4,
+  "material_step": 4,
+  "base_levels": 3,
+  "level_step": 3,
+  "base_shelves": 0,
+  "shelf_step": 3
+}

@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:respiration",
+  "material": {
+    "item": "minecraft:nautilus_shell"
+  },
+  "base_material": 1,
+  "material_step": 1,
+  "base_levels": 5,
+  "level_step": 4,
+  "base_shelves": 0,
+  "shelf_step": 3
+}

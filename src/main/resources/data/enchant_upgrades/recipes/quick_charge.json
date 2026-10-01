@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:quick_charge",
+  "material": {
+    "item": "minecraft:redstone"
+  },
+  "base_material": 8,
+  "material_step": 8,
+  "base_levels": 5,
+  "level_step": 4,
+  "base_shelves": 0,
+  "shelf_step": 3
+}

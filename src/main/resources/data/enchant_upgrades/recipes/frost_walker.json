@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:frost_walker",
+  "material": {
+    "item": "minecraft:packed_ice"
+  },
+  "base_material": 4,
+  "material_step": 4,
+  "base_levels": 8,
+  "level_step": 6,
+  "base_shelves": 6,
+  "shelf_step": 6
+}

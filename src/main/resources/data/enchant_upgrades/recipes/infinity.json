@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:infinity",
+  "material": {
+    "item": "minecraft:ender_eye"
+  },
+  "base_material": 2,
+  "material_step": 0,
+  "base_levels": 24,
+  "level_step": 0,
+  "base_shelves": 12,
+  "shelf_step": 0
+}

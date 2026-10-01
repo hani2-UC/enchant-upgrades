@@ -1,0 +1,16 @@
+{
+  "screen.enchant_upgrades.title": "Enchant Upgrades",
+  "screen.enchant_upgrades.target": "Gear",
+  "screen.enchant_upgrades.material": "Fuel",
+  "screen.enchant_upgrades.required": "Required",
+  "screen.enchant_upgrades.upgrade": "Upgrade",
+  "screen.enchant_upgrades.shelves": "Shelves: %s/15",
+  "screen.enchant_upgrades.cost": "%s items / %sLv / %s shelves",
+  "screen.enchant_upgrades.insert": "Insert equipment or a book in the left slot, then choose an enchantment to upgrade.",
+  "screen.enchant_upgrades.unsupported": "Cannot enchant this item",
+  "screen.enchant_upgrades.max": "Max level",
+  "screen.enchant_upgrades.conflict": "Conflicts with an existing enchantment",
+  "screen.enchant_upgrades.need_shelves": "Requires %s active bookshelves",
+  "screen.enchant_upgrades.need_material": "Not enough upgrade materials",
+  "screen.enchant_upgrades.need_xp": "Not enough experience levels"
+}

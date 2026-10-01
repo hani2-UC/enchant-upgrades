@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:fire_aspect",
+  "material": {
+    "item": "minecraft:blaze_powder"
+  },
+  "base_material": 4,
+  "material_step": 4,
+  "base_levels": 6,
+  "level_step": 5,
+  "base_shelves": 3,
+  "shelf_step": 3
+}

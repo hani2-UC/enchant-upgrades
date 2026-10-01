@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:flame",
+  "material": {
+    "item": "minecraft:fire_charge"
+  },
+  "base_material": 2,
+  "material_step": 0,
+  "base_levels": 12,
+  "level_step": 0,
+  "base_shelves": 6,
+  "shelf_step": 0
+}

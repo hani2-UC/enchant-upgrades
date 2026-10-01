@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:sharpness",
+  "material": {
+    "item": "minecraft:blaze_rod"
+  },
+  "base_material": 1,
+  "material_step": 1,
+  "base_levels": 3,
+  "level_step": 3,
+  "base_shelves": 0,
+  "shelf_step": 3
+}

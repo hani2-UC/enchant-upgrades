@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:mending",
+  "material": {
+    "item": "minecraft:echo_shard"
+  },
+  "base_material": 2,
+  "material_step": 0,
+  "base_levels": 30,
+  "level_step": 0,
+  "base_shelves": 15,
+  "shelf_step": 0
+}

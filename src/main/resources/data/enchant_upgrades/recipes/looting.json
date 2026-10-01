@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:looting",
+  "material": {
+    "item": "minecraft:emerald"
+  },
+  "base_material": 2,
+  "material_step": 2,
+  "base_levels": 6,
+  "level_step": 5,
+  "base_shelves": 3,
+  "shelf_step": 3
+}

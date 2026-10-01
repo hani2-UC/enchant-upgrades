@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:riptide",
+  "material": {
+    "item": "minecraft:heart_of_the_sea"
+  },
+  "base_material": 1,
+  "material_step": 0,
+  "base_levels": 8,
+  "level_step": 6,
+  "base_shelves": 3,
+  "shelf_step": 3
+}

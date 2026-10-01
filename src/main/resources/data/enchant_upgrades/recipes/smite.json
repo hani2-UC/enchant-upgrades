@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:smite",
+  "material": {
+    "item": "minecraft:rotten_flesh"
+  },
+  "base_material": 8,
+  "material_step": 8,
+  "base_levels": 3,
+  "level_step": 3,
+  "base_shelves": 0,
+  "shelf_step": 3
+}

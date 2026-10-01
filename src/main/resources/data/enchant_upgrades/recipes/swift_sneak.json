@@ -1,0 +1,13 @@
+{
+  "type": "enchant_upgrades:upgrade",
+  "enchantment": "minecraft:swift_sneak",
+  "material": {
+    "item": "minecraft:echo_shard"
+  },
+  "base_material": 1,
+  "material_step": 1,
+  "base_levels": 10,
+  "level_step": 8,
+  "base_shelves": 9,
+  "shelf_step": 3
+}
